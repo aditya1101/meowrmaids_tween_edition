@@ -20,10 +20,10 @@ func _update_arm_positions() -> void:
 	# 2. CRITICAL: Kill any existing tween so they don't fight!
 	if active_tween:
 		active_tween.kill()
-	
+
 	# 3. Create the new one and store it
 	active_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	
+
 	match current_position:
 		ArmPosition.NEUTRAL:
 			active_tween.tween_property(right_arm, "rotation_degrees", 0, 0.3)
@@ -33,23 +33,22 @@ func _update_arm_positions() -> void:
 			
 		ArmPosition.POINT_LEFT:
 			active_tween.tween_property(right_arm, "rotation_degrees", -90, 0.3)
-			active_tween.tween_property(left_arm, "rotation_degrees", 90, 0.3)
+			active_tween.tween_property(left_arm, "rotation_degrees", -90, 0.3)
 			active_tween.tween_property(right_arm, "position:y", 0, 0.3)
 			active_tween.tween_property(left_arm, "position:y", 0, 0.3)
 			
 		ArmPosition.POINT_RIGHT:
 			active_tween.tween_property(right_arm, "rotation_degrees", 90, 0.3)
-			active_tween.tween_property(left_arm, "rotation_degrees", -90, 0.3)
+			active_tween.tween_property(left_arm, "rotation_degrees", 90, 0.3)
 			active_tween.tween_property(right_arm, "position:y", 0, 0.3)
 			active_tween.tween_property(left_arm, "position:y", 0, 0.3)
 			
 		ArmPosition.BOTH_UP:
 			# Sequence: Rotate first, THEN slide up
-			active_tween.tween_property(right_arm, "rotation_degrees", 180, 0.2)
-			active_tween.tween_property(left_arm, "rotation_degrees", 180, 0.2)
+			active_tween.tween_property(right_arm, "rotation_degrees", 0, 0.2)
+			active_tween.tween_property(left_arm, "rotation_degrees", 0, 0.2)
 			
-			# Use chain() here to make the slide wait for the rotation
-			active_tween.chain().tween_property(right_arm, "position:y", -50, 0.2)
+			active_tween.tween_property(right_arm, "position:y", -50, 0.2)
 			active_tween.tween_property(left_arm, "position:y", -50, 0.2)
 
 # Input Polling (as discussed)
