@@ -23,33 +23,23 @@ func _update_arm_positions() -> void:
 
 	# 3. Create the new one and store it
 	active_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-
+	
 	match current_position:
 		ArmPosition.NEUTRAL:
-			active_tween.tween_property(right_arm, "rotation_degrees", 0, 0.3)
-			active_tween.tween_property(left_arm, "rotation_degrees", 0, 0.3)
-			active_tween.tween_property(right_arm, "position:y", 0, 0.3)
-			active_tween.tween_property(left_arm, "position:y", 0, 0.3)
+			left_arm.frame = 0
+			right_arm.frame = 0
 			
 		ArmPosition.POINT_LEFT:
-			active_tween.tween_property(right_arm, "rotation_degrees", -90, 0.3)
-			active_tween.tween_property(left_arm, "rotation_degrees", -90, 0.3)
-			active_tween.tween_property(right_arm, "position:y", 0, 0.3)
-			active_tween.tween_property(left_arm, "position:y", 0, 0.3)
+			left_arm.frame = 1
+			right_arm.frame = 0
 			
 		ArmPosition.POINT_RIGHT:
-			active_tween.tween_property(right_arm, "rotation_degrees", 90, 0.3)
-			active_tween.tween_property(left_arm, "rotation_degrees", 90, 0.3)
-			active_tween.tween_property(right_arm, "position:y", 0, 0.3)
-			active_tween.tween_property(left_arm, "position:y", 0, 0.3)
+			left_arm.frame = 0
+			right_arm.frame = 1
 			
 		ArmPosition.BOTH_UP:
-			# Sequence: Rotate first, THEN slide up
-			active_tween.tween_property(right_arm, "rotation_degrees", 0, 0.2)
-			active_tween.tween_property(left_arm, "rotation_degrees", 0, 0.2)
-			
-			active_tween.tween_property(right_arm, "position:y", -50, 0.2)
-			active_tween.tween_property(left_arm, "position:y", -50, 0.2)
+			left_arm.frame = 2
+			right_arm.frame = 2
 
 # Input Polling (as discussed)
 func _process(_delta: float) -> void:
