@@ -2,9 +2,39 @@
 
 [ext_resource type="Script" uid="uid://bkeesxtydt45x" path="res://node_2d.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bqnl2ou4dyore" path="res://CatBody.png" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b1wcahhq6mco6" path="res://Background.png" id="2_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cfcbvpr5tsr7p" path="res://CatTail.png" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://duu4sjiureuia" path="res://CatFace.png" id="4_1bvp3"]
 [ext_resource type="SpriteFrames" uid="uid://cfqdvoeg1gnhe" path="res://paw_sprite_frames.tres" id="5_7mycd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
+atlas = ExtResource("2_7mycd")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
+atlas = ExtResource("2_7mycd")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
+atlas = ExtResource("2_7mycd")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dg77c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kek77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c57u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efxa6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
 atlas = ExtResource("2_lquwl")
@@ -30,6 +60,11 @@ animations = [{
 
 [node name="Node2D" type="Node2D" unique_id=235014304]
 script = ExtResource("1_0xm2m")
+
+[node name="Background" type="AnimatedSprite2D" parent="." unique_id=1019110174]
+position = Vector2(64, 64)
+sprite_frames = SubResource("SpriteFrames_dg77c")
+autoplay = "default"
 
 [node name="Tail" type="AnimatedSprite2D" parent="." unique_id=1887511386]
 position = Vector2(96, 80)
@@ -61,3 +96,5 @@ metadata/_edit_group_ = true
 
 [node name="sLeftArmV65" type="AnimatedSprite2D" parent="Marker2D2" unique_id=1060257433]
 sprite_frames = ExtResource("5_7mycd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=770448778]
