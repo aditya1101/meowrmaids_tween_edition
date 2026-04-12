@@ -2,8 +2,8 @@ extends Node2D
 
 enum ArmPosition { NEUTRAL, POINT_LEFT, POINT_RIGHT, BOTH_UP }
 
-@onready var right_arm: Sprite2D = $Marker2D/sRightArmV66
-@onready var left_arm: Sprite2D = $Marker2D2/sLeftArmV65
+@onready var right_arm: AnimatedSprite2D = $Marker2D/sRightArmV66
+@onready var left_arm: AnimatedSprite2D = $Marker2D2/sLeftArmV65
 
 # 1. Add a variable to track the "Active Brain" of the animation
 var active_tween: Tween
