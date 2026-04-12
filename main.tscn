@@ -34,6 +34,7 @@ script = ExtResource("1_0xm2m")
 [node name="Tail" type="AnimatedSprite2D" parent="." unique_id=1887511386]
 position = Vector2(96, 80)
 sprite_frames = SubResource("SpriteFrames_kek77")
+autoplay = "default"
 frame_progress = 0.6600669
 
 [node name="ChucklesChassisV1" type="Sprite2D" parent="." unique_id=795602373]
