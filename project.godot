@@ -15,6 +15,15 @@ run/main_scene="uid://cqmb3dpa3dg5t"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=128
+window/size/viewport_height=128
+window/size/window_width_override=1280
+window/size/window_height_override=1280
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ai_assistant_hub/plugin.cfg")
@@ -41,4 +50,5 @@ ai_assistant_hub/preferences/audio_hints=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
