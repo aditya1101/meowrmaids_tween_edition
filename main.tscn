@@ -60,6 +60,7 @@ animations = [{
 
 [node name="Node2D" type="Node2D" unique_id=235014304]
 script = ExtResource("1_0xm2m")
+metadata/_edit_horizontal_guides_ = [32.0]
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=1019110174]
 position = Vector2(64, 64)
