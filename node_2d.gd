@@ -4,6 +4,9 @@ enum ArmPosition { NEUTRAL, POINT_LEFT, POINT_RIGHT, BOTH_UP }
 var sequence_steps = []
 var player_input = []
 
+enum GamePhase { SHOW_SEQUENCE, RESPONSE }
+var game_phase = GamePhase.SHOW_SEQUENCE
+
 const ARM_TO_ARROW_MAPPING = {
 	ArmPosition.BOTH_UP: 0,
 	ArmPosition.POINT_RIGHT: 1,
@@ -59,7 +62,9 @@ func _generate_sequence(len: int = 4):
 
 func _ready() -> void:
 	_generate_sequence()
-	_show_sequence()
+	await _show_sequence()
+	print(sequence_steps)
+	game_phase = GamePhase.RESPONSE
 	
 func _input_arm_position(arm_position: ArmPosition):
 	player_input.append(arm_position)
@@ -72,19 +77,20 @@ func _input_arm_position(arm_position: ArmPosition):
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return # Don't poll in the editor
 	
-	if Input.is_action_just_pressed("ui_up"):
-		_input_arm_position(ArmPosition.BOTH_UP)
-	elif Input.is_action_just_pressed("ui_left"):
-		_input_arm_position(ArmPosition.POINT_LEFT)
-	elif Input.is_action_just_pressed("ui_right"):
-		_input_arm_position(ArmPosition.POINT_RIGHT)
+	if game_phase == GamePhase.RESPONSE:
+		var next_pos = ArmPosition.NEUTRAL
+		if Input.is_action_just_pressed("ui_up"):
+			_input_arm_position(ArmPosition.BOTH_UP)
+		elif Input.is_action_just_pressed("ui_left"):
+			_input_arm_position(ArmPosition.POINT_LEFT)
+		elif Input.is_action_just_pressed("ui_right"):
+			_input_arm_position(ArmPosition.POINT_RIGHT)
 	
-	var next_pos = ArmPosition.NEUTRAL
-	if Input.is_action_pressed("ui_up"):
-		next_pos = ArmPosition.BOTH_UP
-	elif Input.is_action_pressed("ui_left"):
-		next_pos = ArmPosition.POINT_LEFT
-	elif Input.is_action_pressed("ui_right"):
-		next_pos = ArmPosition.POINT_RIGHT
+		if Input.is_action_pressed("ui_up"):
+			next_pos = ArmPosition.BOTH_UP
+		elif Input.is_action_pressed("ui_left"):
+			next_pos = ArmPosition.POINT_LEFT
+		elif Input.is_action_pressed("ui_right"):
+			next_pos = ArmPosition.POINT_RIGHT
 		
-	current_position = next_pos
+		current_position = next_pos
