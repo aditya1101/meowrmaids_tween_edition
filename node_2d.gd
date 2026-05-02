@@ -60,10 +60,24 @@ func _generate_sequence(len: int = 4):
 func _ready() -> void:
 	_generate_sequence()
 	_show_sequence()
+	
+func _input_arm_position(arm_position: ArmPosition):
+	player_input.append(arm_position)
+	
+	if len(player_input) == len(sequence_steps):
+		print(player_input == sequence_steps)
+		player_input.clear()
 
 # Input Polling (as discussed)
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return # Don't poll in the editor
+	
+	if Input.is_action_just_pressed("ui_up"):
+		_input_arm_position(ArmPosition.BOTH_UP)
+	elif Input.is_action_just_pressed("ui_left"):
+		_input_arm_position(ArmPosition.POINT_LEFT)
+	elif Input.is_action_just_pressed("ui_right"):
+		_input_arm_position(ArmPosition.POINT_RIGHT)
 	
 	var next_pos = ArmPosition.NEUTRAL
 	if Input.is_action_pressed("ui_up"):
