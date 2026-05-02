@@ -55,8 +55,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_5vw27")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"wag",
+"speed": 7.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
@@ -96,41 +96,29 @@ animations = [{
 }]
 
 [sub_resource type="Animation" id="Animation_272bh"]
-length = 0.001
-tracks/0/type = "value"
+resource_name = "correct_response"
+length = 2.0000033
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"wag"],
+"method": &"play"
+}, {
+"args": [],
+"method": &"stop"
+}]
 }
 
-[sub_resource type="Animation" id="Animation_5vw27"]
-resource_name = "arrow_test_sequence"
-length = 7.0
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 3, 1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kek77"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5vw27"]
 _data = {
-&"RESET": SubResource("Animation_272bh"),
-&"arrow_test_sequence": SubResource("Animation_5vw27")
+&"correct_response": SubResource("Animation_272bh")
 }
 
 [node name="Node2D" type="Node2D" unique_id=235014304]
@@ -144,8 +132,7 @@ autoplay = "default"
 [node name="Tail" type="AnimatedSprite2D" parent="." unique_id=1887511386]
 position = Vector2(96, 80)
 sprite_frames = SubResource("SpriteFrames_kek77")
-autoplay = "default"
-frame_progress = 0.6600669
+animation = &"wag"
 
 [node name="ChucklesChassisV1" type="Sprite2D" parent="." unique_id=795602373]
 position = Vector2(64, 80)
@@ -173,6 +160,6 @@ sprite_frames = ExtResource("5_7mycd")
 position = Vector2(64, 17)
 sprite_frames = SubResource("SpriteFrames_2cqfq")
 
-[node name="ArrowAnimation" type="AnimationPlayer" parent="." unique_id=1037552113]
-root_node = NodePath("../Arrow")
-libraries/ = SubResource("AnimationLibrary_kek77")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=178209449]
+root_node = NodePath("../Tail")
+libraries/ = SubResource("AnimationLibrary_5vw27")

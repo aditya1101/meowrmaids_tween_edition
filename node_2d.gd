@@ -18,6 +18,7 @@ const BETWEEN_STEP_DELAY = 0.2 #seconds
 @onready var right_arm: AnimatedSprite2D = $sRightArmV66
 @onready var left_arm: AnimatedSprite2D = $sLeftArmV65
 @onready var arrow: AnimatedSprite2D = $Arrow
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 @export var current_position: ArmPosition = ArmPosition.NEUTRAL:
@@ -71,6 +72,8 @@ func _input_arm_position(arm_position: ArmPosition):
 	
 	if len(player_input) == len(sequence_steps):
 		print(player_input == sequence_steps)
+		if player_input == sequence_steps:
+			animation_player.play("correct_response")
 		player_input.clear()
 
 # Input Polling (as discussed)
