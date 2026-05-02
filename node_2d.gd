@@ -2,11 +2,8 @@ extends Node2D
 
 enum ArmPosition { NEUTRAL, POINT_LEFT, POINT_RIGHT, BOTH_UP }
 
-@onready var right_arm: AnimatedSprite2D = $Marker2D/sRightArmV66
-@onready var left_arm: AnimatedSprite2D = $Marker2D2/sLeftArmV65
-
-# 1. Add a variable to track the "Active Brain" of the animation
-var active_tween: Tween
+@onready var right_arm: AnimatedSprite2D = $sRightArmV66
+@onready var left_arm: AnimatedSprite2D = $sLeftArmV65
 
 @export var current_position: ArmPosition = ArmPosition.NEUTRAL:
 	set(value):
@@ -17,13 +14,6 @@ var active_tween: Tween
 			_update_arm_positions()
 
 func _update_arm_positions() -> void:
-	# 2. CRITICAL: Kill any existing tween so they don't fight!
-	if active_tween:
-		active_tween.kill()
-
-	# 3. Create the new one and store it
-	active_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	
 	match current_position:
 		ArmPosition.NEUTRAL:
 			left_arm.frame = 0

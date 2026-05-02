@@ -82,19 +82,14 @@ position = Vector2(64, 80)
 texture = ExtResource("4_1bvp3")
 metadata/_edit_lock_ = true
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=110866348]
-position = Vector2(96, 80)
-metadata/_edit_group_ = true
-
-[node name="sRightArmV66" type="AnimatedSprite2D" parent="Marker2D" unique_id=1551432689]
-sprite_frames = ExtResource("5_7mycd")
-
-[node name="Marker2D2" type="Marker2D" parent="." unique_id=368278858]
-position = Vector2(32, 80)
-scale = Vector2(-1, 1)
-metadata/_edit_group_ = true
-
-[node name="sLeftArmV65" type="AnimatedSprite2D" parent="Marker2D2" unique_id=1060257433]
-sprite_frames = ExtResource("5_7mycd")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=770448778]
+
+[node name="sRightArmV66" type="AnimatedSprite2D" parent="." unique_id=1551432689]
+position = Vector2(96, 80)
+sprite_frames = ExtResource("5_7mycd")
+
+[node name="sLeftArmV65" type="AnimatedSprite2D" parent="." unique_id=1060257433]
+position = Vector2(32, 80)
+rotation = 3.1415925
+scale = Vector2(1, -1)
+sprite_frames = ExtResource("5_7mycd")
