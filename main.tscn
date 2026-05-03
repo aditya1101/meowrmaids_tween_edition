@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cfcbvpr5tsr7p" path="res://CatTail.png" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://duu4sjiureuia" path="res://CatFace.png" id="4_1bvp3"]
 [ext_resource type="SpriteFrames" uid="uid://cfqdvoeg1gnhe" path="res://paw_sprite_frames.tres" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://m6t5buevnb62" path="res://CatClosedEyes.png" id="6_5vw27"]
 [ext_resource type="Texture2D" uid="uid://ccgncruxtcrac" path="res://Arrows.png" id="7_272bh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
@@ -95,6 +96,33 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_kek77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CatHead/CatClosedEyes:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CatHead:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 80)]
+}
+
 [sub_resource type="Animation" id="Animation_272bh"]
 resource_name = "correct_response"
 length = 2.0000033
@@ -116,9 +144,39 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_4c57u"]
+resource_name = "wrong_response"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CatHead/CatClosedEyes:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CatHead:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(64, 86), Vector2(64, 80)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5vw27"]
 _data = {
-&"correct_response": SubResource("Animation_272bh")
+&"RESET": SubResource("Animation_kek77"),
+&"correct_response": SubResource("Animation_272bh"),
+&"wrong_response": SubResource("Animation_4c57u")
 }
 
 [node name="Node2D" type="Node2D" unique_id=235014304]
@@ -128,11 +186,13 @@ script = ExtResource("1_0xm2m")
 position = Vector2(64, 64)
 sprite_frames = SubResource("SpriteFrames_dg77c")
 autoplay = "default"
+metadata/_edit_lock_ = true
 
 [node name="Tail" type="AnimatedSprite2D" parent="." unique_id=1887511386]
 position = Vector2(96, 80)
 sprite_frames = SubResource("SpriteFrames_kek77")
 animation = &"wag"
+metadata/_edit_lock_ = true
 
 [node name="ChucklesChassisV1" type="Sprite2D" parent="." unique_id=795602373]
 position = Vector2(64, 80)
@@ -142,19 +202,25 @@ metadata/_edit_lock_ = true
 [node name="CatHead" type="Sprite2D" parent="." unique_id=1886773867]
 position = Vector2(64, 80)
 texture = ExtResource("4_1bvp3")
-metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CatClosedEyes" type="Sprite2D" parent="CatHead" unique_id=1735791004]
+visible = false
+texture = ExtResource("6_5vw27")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=770448778]
 
 [node name="sRightArmV66" type="AnimatedSprite2D" parent="." unique_id=1551432689]
 position = Vector2(96, 80)
 sprite_frames = ExtResource("5_7mycd")
+metadata/_edit_lock_ = true
 
 [node name="sLeftArmV65" type="AnimatedSprite2D" parent="." unique_id=1060257433]
 position = Vector2(32, 80)
 rotation = 3.1415925
 scale = Vector2(1, -1)
 sprite_frames = ExtResource("5_7mycd")
+metadata/_edit_lock_ = true
 
 [node name="Arrow" type="AnimatedSprite2D" parent="." unique_id=148595940]
 position = Vector2(64, 17)

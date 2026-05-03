@@ -74,6 +74,8 @@ func _input_arm_position(arm_position: ArmPosition):
 		print(player_input == sequence_steps)
 		if player_input == sequence_steps:
 			animation_player.play("correct_response")
+		else:
+			animation_player.play("wrong_response")
 		player_input.clear()
 
 # Input Polling (as discussed)
